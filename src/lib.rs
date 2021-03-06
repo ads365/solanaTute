@@ -1,6 +1,7 @@
 //register all modules here
 
-//register entrypoint module
+//register entrypoint module adn the no entrypoint feature
+#[cfg(not(feature = "no-entrypoint"))]
 pub mod entrypoint;
 
 //register instruction
