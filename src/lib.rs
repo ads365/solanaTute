@@ -9,3 +9,9 @@ pub mod instruction;
 
 //register processor
 pub mod processor;
+
+//register state
+pub mod state;
+
+//register errors
+pub mod error;

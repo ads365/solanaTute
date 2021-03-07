@@ -1,10 +1,10 @@
 //program api - used to process instruction data
 
 //decalre libs?
-std::convert::TryInto;
-solana_program::program_error::ProgramError;
+use std::convert::TryInto;
+use solana_program::program_error::ProgramError;
 
-crate::error::EscrowError::InvalidInstruction;
+use crate::error::EscrowError::InvalidInstruction;
 
 
 //instruction for escrow program
@@ -26,7 +26,7 @@ pub enum EscrowInstruction {
     }
 }
 
-EscrowInstruction {
+impl EscrowInstruction {
     
     //public function which expects an input u8/number and returns self or error
     pub fn unpack(input: &[u8]) -> Result<Self, ProgramError> {
@@ -37,10 +37,10 @@ EscrowInstruction {
         Ok(match tag {
             //self
           0 => Self::InitEscrow {
-              amount: self::unpack_amount(rest)?,
+              amount: Self::unpack_amount(rest)?,
           },
           //error
-          _=> return Err(InvalidInstruction.into) 
+          _=> return Err(InvalidInstruction.into()) 
         })
     }
 
@@ -55,6 +55,6 @@ EscrowInstruction {
             //did it error?
             .ok_or(InvalidInstruction)?;
         //return amount
-        ok(amount);
+        Ok(amount)
     }
 }

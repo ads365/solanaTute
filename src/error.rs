@@ -2,19 +2,18 @@ use thiserror::Error;
 
 use solana_program::program_error::ProgramError;
 
-#[derive (Error, Debug, Copy, Clone)]
-
-//define error types
+#[derive(Error, Debug, Copy, Clone)]
 pub enum EscrowError {
-    //invalid instruction error
+    /// Invalid instruction
     #[error("Invalid Instruction")]
     InvalidInstruction,
+    /// Not Rent Exempt
+    #[error("Not Rent Exempt")]
+    NotRentExempt,
 }
 
 impl From<EscrowError> for ProgramError {
-
-    convert escrow error to program error
     fn from(e: EscrowError) -> Self {
-        ProgramError::Custom(e and u32)
+        ProgramError::Custom(e as u32)
     }
 }
