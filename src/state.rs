@@ -29,7 +29,8 @@ impl IsInitialized for Escrow {
 }
 
 impl Pack for Escrow {
-    //define the legnth of our type
+    //define the legnth of our Escrow type/structe - the gloabls are this many bytes
+    //bools are 1 byte, addresses/pukeys are 32 ea,  u64 is 8
     const LEN: usize = 105;
     //deserialize
     fn unpack_from_slice(src: &[u8]) -> Result<Self, ProgramError> {
@@ -60,6 +61,7 @@ impl Pack for Escrow {
     }
 
     //serialize parsing self - converting to serialized data
+    //self exists now as we are serializing info
     fn pack_into_slice(&self, dst: &mut [u8]) {
         let dst = array_mut_ref![dst, 0, Escrow::LEN];
 
